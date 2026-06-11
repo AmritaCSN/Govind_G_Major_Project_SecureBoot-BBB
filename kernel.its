@@ -1,0 +1,35 @@
+/dts-v1/;
+
+/ {
+    description = "Simple Secure Boot Image";
+    #address-cells = <1>;
+
+    images {
+        kernel {
+            description = "Linux Kernel";
+            data = /incbin/("zImage");
+            type = "kernel";
+            arch = "arm";
+            os = "linux";
+            compression = "none";
+            load = <0x80008000>;
+            entry = <0x80008000>;
+            hash {
+                algo = "sha256";
+            };
+        };
+    };
+
+    configurations {
+        default = "conf";
+
+        conf {
+            kernel = "kernel";
+            signature {
+                algo = "sha256,rsa2048";
+                key-name-hint = "dev";
+                sign-images = "kernel";
+            };
+        };
+    };
+};
