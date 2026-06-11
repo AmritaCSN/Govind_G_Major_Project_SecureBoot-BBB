@@ -1,0 +1,14 @@
+ dumpimage -l kernel.itb
+sudo screen /dev/ttyUSB0 115200
+mmc list
+mmc dev 0
+fatls mmc 0:1
+fatload mmc 0:1 0x82000000 kernel.itb
+iminfo 0x82000000
+bootm 0x82000000
+fatload mmc 0:1 0x82000000 tampered_kernel.itb
+
+
+for hmac :
+cd /mnt/sdboot/hmac
+./verify_hmac.sh
