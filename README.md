@@ -274,5 +274,5 @@ Govind G
 
 M.Tech Cybersecurity
 
-Embedded Systems and Secure Boot Research
+Cybersecurity Systems and Networks
 
